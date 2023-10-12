@@ -1,27 +1,23 @@
 #include <stdio.h>
-#include "file1.h"
+#include <string.h>
+#include "string_utility.h"
 
 #if EXTRA_PROFILE
 #include "time_utility.h"
 #endif
 
-extern int calculate(int a, int b);
+#define HELLO_WORLD_MSG "Hello World 2023!"
 
 int main(int argc, char *argv[]) {
-    int sum;
-    char buffer1[10];
 #if EXTRA_PROFILE
-    char buffer2[100];
-#endif
-    
-    sum = calculate(1, 2);
-    sprintf(buffer1, "%d", sum);
-#if EXTRA_PROFILE
-    get_current_time(buffer2, sizeof(buffer2));
-    show(buffer1, buffer2);
+    char buffer[100];
+    get_current_time(buffer, sizeof(buffer));
+    printf("%s - %s\n", buffer, HELLO_WORLD_MSG);
 #else
-    show(buffer1);
+    printf("%s\n", HELLO_WORLD_MSG);
 #endif
+
+    check_string(HELLO_WORLD_MSG, strlen(HELLO_WORLD_MSG));
 
     return 0;
 }

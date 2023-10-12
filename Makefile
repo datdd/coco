@@ -1,7 +1,7 @@
 COMPILER := gcc
-OPTIONS := -g -Wall --save-temps
+OPTIONS := -g -Wall
 BUILD := build
-OBJECTS := $(BUILD)/file1.o $(BUILD)/file2.o
+OBJECTS := $(BUILD)/string_utility.o
 
 ifeq (YES,$(ENABLE_COVERAGE))
 OPTIONS += --cs-on --cs-mcdc --cs-mcc --cs-function-profiler=all
@@ -21,10 +21,7 @@ all: program
 program: main.c $(OBJECTS)
 	$(COMPILE) $< $(BUILD)/*.o -o $@
 
-$(BUILD)/file1.o: file1.c file1.h build
-	$(COMPILE) -c $< -o $@
-
-$(BUILD)/file2.o: file2.c build
+$(BUILD)/string_utility.o: string_utility.c string_utility.h build
 	$(COMPILE) -c $< -o $@
 
 $(BUILD)/time_utility.o: time_utility.c time_utility.h build
